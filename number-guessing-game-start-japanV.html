@@ -79,6 +79,14 @@
       }
       guesses.textContent += `${userGuess} `;
 
+      setContents(userGuess);
+
+      guessCount++;
+      guessField.value = '';
+      guessField.focus();
+    }
+
+    function setContents(userGuess) {
       if (userGuess === randomNumber) {
         lastResult.textContent = 'おめでとう！ 正解です！';
         lastResult.style.backgroundColor = 'green';
@@ -97,10 +105,11 @@
           lowOrHi.textContent = '高い!';
         }
       }
+    }
 
-      guessCount++;
-      guessField.value = '';
-      guessField.focus();
+    function setGameOver() {
+      // ゲームオーバー処理
+      console.log('Game Over');
     }
   </script>
 </body>
