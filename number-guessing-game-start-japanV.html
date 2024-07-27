@@ -18,11 +18,11 @@
       margin: 0 auto;
     }
 
-    .form input[type="number"] {
+    .container .form input[type="number"] {
       width: 200px;
     }
 
-    .lastResult {
+    .container .lastResult {
       color: white;
       padding: 3px;
     }
@@ -30,26 +30,28 @@
 </head>
 
 <body>
-  <h1>推測できますか？</h1>
-
-  <p>1 から 100 までの乱数を選択しました。10 ターン以内にそれを推測できるかどうかを確認してください。 場合はお知らせします
-    あなたの推測は高すぎるか低すぎます。</p>
-
-  <div class="form">
-    <label for="guessField">推測の数字を入力してください: </label>
-    <input type="number" min="1" max="100" required id="guessField" class="guessField">
-    <input type="submit" value="推測を提出する" class="guessSubmit">
-  </div>
-
-  <div class="resultParas">
-    <p class="guesses"></p>
-    <p class="lastResult"></p>
-    <p class="lowOrHi"></p>
+  <div class="container">
+    <h1>推測できますか？</h1>
+  
+    <p>1 から 100 までの乱数を選択しました。10 ターン以内にそれを推測できるかどうかを確認してください。 場合はお知らせします
+      あなたの推測は高すぎるか低すぎます。</p>
+  
+    <div class="form">
+      <label for="guessField">推測の数字を入力してください: </label>
+      <input type="number" min="1" max="100" required id="guessField" class="guessField">
+      <input type="submit" value="推測を提出する" class="guessSubmit">
+    </div>
+  
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+    </div>
   </div>
 
   <script>
-
-    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    'use strict';
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
 
     const guesses = document.querySelector('.guesses');
     const lastResult = document.querySelector('.lastResult');
@@ -61,12 +63,15 @@
     let guessCount = 1;
     let resetButton;
 
+    checkGuess();
+    
+    guessSubmit.addEventListener('click',checkGuess1);
+
     function checkGuess() {
       alert('スタート！！'); 
       //alert('placehoder');//placehoder プレースホルダー
     }
 
-    checkGuess();
     function checkGuess1() {
       const userGuess = Number(guessField.value);
       if (guessCount === 1) {
@@ -97,8 +102,6 @@
       guessField.value = '';
       guessField.focus();
     }
-
-    guessSubmit.addEventListener('click',checkGuess1);
   </script>
 </body>
 
